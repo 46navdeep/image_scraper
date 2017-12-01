@@ -10,9 +10,7 @@ module.exports = app => {
   var link = new Array();
   link[0] = "empty";
 
-  app.post("/home", function(req, res) {
-    console.log(req.body.key);
-
+  app.post("/home", function(req, res, next) {
     google
       .list({
         keyword: req.body.key,

@@ -14,7 +14,6 @@ class ListBody extends Component {
 
   handleData = data => {
     this.setState({ words: data });
-    console.log(this.state.words);
   };
 
   handleStorage = key => {
@@ -22,7 +21,6 @@ class ListBody extends Component {
   };
 
   handleClick = () => {
-    console.log("About to send ajax request");
     $.ajax({
       url: "/newlist",
       data: { key: "Heyo" },
@@ -32,31 +30,33 @@ class ListBody extends Component {
   };
 
   render() {
-    console.log(localStorage.getItem("last"));
     return (
       <div>
-        <RaisedButton
-          label="Refresh List"
-          primary={true}
-          style={{ marginLeft: "44%" }}
-          onClick={() => this.handleClick()}
-        />
-        <br />
-        <br />
-        <Divider />
+        {this.handleClick()}
         <div>
-          {this.state.words.map((obj, index) => {
-            return (
-              <div key={index}>
-                <Link
-                  to={"/test"}
-                  onClick={() => this.handleStorage(obj.keyword)}
-                >
-                  {obj.keyword}
-                </Link>
-              </div>
-            );
-          })}
+          <RaisedButton
+            label="Refresh List"
+            primary={true}
+            style={{ marginLeft: "44%" }}
+            onClick={() => this.handleClick()}
+          />
+          <br />
+          <br />
+          <Divider />
+          <div>
+            {this.state.words.map((obj, index) => {
+              return (
+                <div key={index}>
+                  <Link
+                    to={"/saved"}
+                    onClick={() => this.handleStorage(obj.keyword)}
+                  >
+                    {obj.keyword}
+                  </Link>
+                </div>
+              );
+            })}
+          </div>
         </div>
       </div>
     );

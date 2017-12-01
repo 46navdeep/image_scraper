@@ -28,15 +28,11 @@ class SearchBody extends Component {
     //.then(console.log("Chala"));*/
     this.setState({ ref: "hide" });
     this.setState({ imge: data });
-    console.log(this.state.imge);
   };
 
   handleClick = key => {
-    /*  var parameters = {
-      key: key
-    };*/
     this.setState({ ref: "loading" });
-    console.log(key);
+
     $.ajax({
       url: "/home",
       data: { key: key },
@@ -46,9 +42,6 @@ class SearchBody extends Component {
   };
 
   render() {
-    // Transform the data into json
-
-    console.log(this.state.keyword);
     return (
       <div>
         <TextField
